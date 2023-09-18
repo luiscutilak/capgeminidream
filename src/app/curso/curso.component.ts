@@ -16,7 +16,7 @@ export class CursoComponent implements OnInit {
 
   //Vetor de Cursos
 
-  vetor: Curso[];
+  vetor: Curso[] = [];
 
   // Abaixo objeto da classe Curso
   curso = new Curso();
@@ -33,13 +33,21 @@ export class CursoComponent implements OnInit {
     this.curso_servico.obterCursos().subscribe(
       (res: Curso[]) => {
         this.vetor = res;
+        console.log(res);
       }
     )
   }
 
 //cadastro método de cadastrar
-cadastro():void {
-  alert("Cadastro");
+cadastro() {
+  this.curso_servico.cadastrarCurso(this.curso).subscribe(
+    (res:Curso[]) => {
+      //adicionado dados ao vetor
+      this.vetor = res;
+
+      //
+    }
+  )
 }
 
   //alterar metodo de alterar algo.
