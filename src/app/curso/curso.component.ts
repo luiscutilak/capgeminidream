@@ -28,6 +28,7 @@ export class CursoComponent implements OnInit {
     this.selecao();
   }
 
+
   //selecao metodo de selecionar
   selecao() {
     this.curso_servico.obterCursos().subscribe(
@@ -61,8 +62,25 @@ cadastro() {
   }
 
   //Remover, métdodo de excluir
-  remover():void{
-    alert("Remover");
+  remover(){
+    this.curso_servico.removerCurso(this.curso).subscribe(
+      (res : Curso[]) => {
+        this.vetor = res;
+
+        this.curso.nomeCurso = null;
+        this.curso.valorCurso = null;
+
+      }
+    )
   }
+
+  // Selecionar curso especifico:
+
+  selecionarCurso(c:Curso){
+    this.curso.idCurso = c.idCurso;
+    this.curso.nomeCurso = c.nomeCurso;
+    this.curso.valorCurso = c.valorCurso;
+  }
+
 }
 

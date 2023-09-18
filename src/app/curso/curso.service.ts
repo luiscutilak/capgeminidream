@@ -21,9 +21,9 @@ export class CursoService {
   obterCursos():Observable<Curso[]>{
     return this.http.get(this.url+"listar").pipe(//dentro do pipe eu crio um mapeamento(map) para trabalhar com as colunas. DO BANCO DE DADOS
       map((res) => {
-        console.log(res);
         this.vetor = res['cursos'];
         return this.vetor;
+
       })
     )
   }
