@@ -33,7 +33,6 @@ export class CursoComponent implements OnInit {
     this.curso_servico.obterCursos().subscribe(
       (res: Curso[]) => {
         this.vetor = res;
-        console.log(res);
       }
     )
   }
@@ -45,7 +44,13 @@ cadastro() {
       //adicionado dados ao vetor
       this.vetor = res;
 
-      //
+      //Limpar dados do input, ou seja dos atributos.
+      this.curso.nomeCurso = null;
+      this.curso.valorCurso = null;
+
+      //Atualizar a listagem:
+
+      this.selecao();
     }
   )
 }
