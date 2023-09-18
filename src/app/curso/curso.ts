@@ -2,8 +2,8 @@
 export class Curso{
 
 //Abaixo os atributos, posso trabalhar com essas caracteristicas
-  nomeCurso:string | undefined;
-  valorCurso:number | undefined;
+  nomeCurso:string;
+  valorCurso:number;
   idCurso?:number;
 
 }
