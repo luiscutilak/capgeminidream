@@ -45,7 +45,7 @@ cadastro() {
       //adicionado dados ao vetor
       this.vetor = res;
 
-      //Limpar dados do input, ou seja dos atributos.
+      //Limpar os atributos, ou seja dos atributos.
       this.curso.nomeCurso = null;
       this.curso.valorCurso = null;
 

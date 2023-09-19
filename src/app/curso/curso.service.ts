@@ -50,6 +50,15 @@ export class CursoService {
       return this.vetor = filtro;
     }))
   }
+  //Atualizar Curso
+  atualizarCurso(c:Curso): Observable<Curso[]>{
+    return this.http.put(this.url+'alterar', {cursos: c})
+    .pipe(map((res)=> {
+      const cursoAlterado = this.vetor.find((item)=> {
+        return +item['idCurso'] === +
+      })
+    }))
+  }
 }
 
 
