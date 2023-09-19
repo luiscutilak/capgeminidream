@@ -13,22 +13,22 @@ export class CursoComponent implements OnInit {
   //URL base
 
   url = "http://localhost/api/projeto-api/php/"
-
+  //courses Vector
   //Vetor de Cursos
 
   vetor: Curso[];
-
+  //below, object of course class
   // Abaixo objeto da classe Curso
   curso = new Curso();
 
   constructor(private curso_servico:CursoService) { }
-
+//below onInit. When starting the system, it should list the courses
   ngOnInit() {
     //Ao iniciar o sistema, deverá listar os cursos
     this.selecao();
   }
 
-
+  //select Method
   //selecao metodo de selecionar
   selecao() {
     this.curso_servico.obterCursos().subscribe(
@@ -37,30 +37,41 @@ export class CursoComponent implements OnInit {
       }
     )
   }
-
+//register method
 //cadastro método de cadastrar
 cadastro() {
   this.curso_servico.cadastrarCurso(this.curso).subscribe(
     (res:Curso[]) => {
+      //add vector data
       //adicionado dados ao vetor
       this.vetor = res;
-
+      //clear Atributtes
       //Limpar os atributos, ou seja dos atributos.
       this.curso.nomeCurso = null;
       this.curso.valorCurso = null;
 
+      //Update the list
       //Atualizar a listagem:
 
       this.selecao();
     }
   )
 }
-
+  //change method
   //alterar metodo de alterar algo.
-  alterar(): void {
-    alert("Alterar");
-  }
+  alterar(){                          //subscribe retorna uma informação //SUBSCRIBE RETURN INFORMATIONS
+    this.curso_servico.atualizarCurso(this.curso).subscribe(
+      (res) => {
 
+        //below, update vector
+        this.vetor = res;
+
+        //Clear object values
+        this.curso.nomeCurso = null;
+      }
+    )
+  }
+  //Delet method
   //Remover, métdodo de excluir
   remover(){
     this.curso_servico.removerCurso(this.curso).subscribe(
@@ -74,6 +85,7 @@ cadastro() {
     )
   }
 
+  // Select specific course
   // Selecionar curso especifico:
 
   selecionarCurso(c:Curso){
